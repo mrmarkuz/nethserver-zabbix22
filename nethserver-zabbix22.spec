@@ -1,24 +1,28 @@
-Summary: NethServer zabbix22 configuration
-Name: nethserver-zabbix22
-Version: 0.1.0
-Release: 1%{?dist}
+Summary: nethserver-zabbix22 sets up the monitoring system
+%define name nethserver-zabbix22
+Name: %{name}
+%define version 0.1.0
+%define release 1
+Version: %{version}
+Release: %{release}%{?dist}
 License: GPL
-URL: %{url_prefix}/%{name} 
+Group: Networking/Daemons
 Source0: %{name}-%{version}.tar.gz
-BuildArch: noarch
-
-Requires: check-mk-agent
-Requires: nethserver-base
+URL: %{url_prefix}/%{name}
 Requires: nethserver-mysql
 Requires: zabbix22-server-mysql
 Requires: zabbix22-web-mysql
 Requires: zabbix22-agent
-
 BuildRequires: perl
-BuildRequires: nethserver-devtools 
+BuildRequires: nethserver-devtools
+BuildArch: noarch
 
 %description
-NethServer omd configuration
+NethServer Zabbix22 configuration
+
+%changelog
+* Sun Dec 03 2017 Markus Neuberger <info@markusneuberger.at> - 0.1.0-1
+- Initial NS7 release
 
 %prep
 %setup
@@ -32,14 +36,9 @@ rm -rf %{buildroot}
 %{genfilelist} %{buildroot} > %{name}-%{version}-filelist
 
 %post
-
 %preun
 
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
 %doc COPYING
 %dir %{_nseventsdir}/%{name}-update
-
-%changelog
-* Sun Dec 03 2017 Markus Neuberger <info@markusneuberger.at> - 0.1.0-1
-- Initial NS7 release
