@@ -7,13 +7,12 @@ Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
-Source0: %{name}-%{version}.tar.gz
-URL: %{url_prefix}/%{name}
+Source: %{name}-%{version}.tar.gz
+BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 Requires: nethserver-mysql
 Requires: zabbix22-server-mysql
 Requires: zabbix22-web-mysql
 Requires: zabbix22-agent
-BuildRequires: perl
 BuildRequires: nethserver-devtools
 BuildArch: noarch
 
@@ -31,14 +30,18 @@ NethServer Zabbix22 configuration
 perl createlinks
 
 %install
-rm -rf %{buildroot}
-(cd root; find . -depth -print | cpio -dump %{buildroot})
-%{genfilelist} %{buildroot} > %{name}-%{version}-filelist
+rm -rf $RPM_BUILD_ROOT
+(cd root; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
+rm -f %{name}-%{version}-%{release}-filelist
+%{genfilelist} $RPM_BUILD_ROOT > %{name}-%{version}-%{release}-filelist
 
 %post
-%preun
+%postun
 
-%files -f %{name}-%{version}-filelist
+%clean 
+rm -rf $RPM_BUILD_ROOT
+
+%files -f %{name}-%{version}-%{release}-filelist
 %defattr(-,root,root)
-%doc COPYING
 %dir %{_nseventsdir}/%{name}-update
+%doc COPYING
