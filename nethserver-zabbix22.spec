@@ -1,5 +1,5 @@
-Summary: nethserver-template  is a skeleton for a new module
-%define name nethserver-template
+Summary: nethserver-zabbix22 sets up the monitoring system
+%define name nethserver-zabbix22
 Name: %{name}
 %define version 0.1.0
 %define release 1
@@ -9,15 +9,18 @@ License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
-Requires: XXXXXXXXX
+Requires: nethserver-mysql
+Requires: zabbix22-server-mysql
+Requires: zabbix22-web-mysql
+Requires: zabbix22-agent
 BuildRequires: nethserver-devtools
 BuildArch: noarch
 
 %description
-skeleton for a new module
+nethserver-zabbix22 integrates zabbix22 in NethServer
 
 %changelog
-* Tue May 09 2017 stephane de Labrusse <stephdl@de-labrusse.fr>
+* Sun Dec 03 2017 Markus Neuberger <info@markusneuberger.at>
 - initial
 
 %prep
