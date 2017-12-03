@@ -9,10 +9,7 @@ License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
-Requires: nethserver-mysql
-Requires: zabbix22-server-mysql
-Requires: zabbix22-web-mysql
-Requires: zabbix22-agent
+Requires: nethserver-mysql, zabbix22-server-mysql, zabbix22-web-mysql, zabbix22-agent
 BuildRequires: nethserver-devtools
 BuildArch: noarch
 
@@ -22,6 +19,7 @@ NethServer Zabbix22 configuration
 %changelog
 * Sun Dec 03 2017 Markus Neuberger <info@markusneuberger.at> - 0.1.0-1
 - Initial NS7 release
+- Added zabbix mariadb database
 
 %prep
 %setup

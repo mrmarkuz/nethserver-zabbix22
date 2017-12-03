@@ -15,6 +15,9 @@ event_actions ($event,
      'nethserver-zabbix22-conf' => '02'
 );
 
+templates2events("/etc/httpd/conf.d/zabbix.conf", $event);
+templates2events("/etc/zabbix/zabbix_server.conf", $event);
+
 #example 1
 
 #launch several actions following one event
@@ -33,7 +36,7 @@ event_actions ($event,
 event_services($event,
                'zabbix-server' => 'restart',
                'zabbix-agent' => 'restart',
-               'httpd' => 'restart'
+               'httpd' => 'reload'
 );
 
 #example2 when you have several events with several 
