@@ -1,49 +1,45 @@
-Summary: nethserver-zabbix22 sets up the monitoring system
-%define name nethserver-zabbix22
-Name: %{name}
-%define version 0.1.0
-%define release 1
-Version: %{version}
-Release: %{release}%{?dist}
+Summary: NethServer zabbix22 configuration
+Name: nethserver-zabbix22
+Version: 0.1.0
+Release: 1%{?dist}
 License: GPL
-Group: Networking/Daemons
-Source: %{name}-%{version}.tar.gz
-BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
+URL: %{url_prefix}/%{name} 
+Source0: %{name}-%{version}.tar.gz
+BuildArch: noarch
+
+Requires: check-mk-agent
+Requires: nethserver-base
 Requires: nethserver-mysql
 Requires: zabbix22-server-mysql
 Requires: zabbix22-web-mysql
 Requires: zabbix22-agent
-BuildRequires: nethserver-devtools
-BuildArch: noarch
+
+BuildRequires: perl
+BuildRequires: nethserver-devtools 
 
 %description
-nethserver-zabbix22 integrates zabbix22 in NethServer
-
-%changelog
-* Sun Dec 03 2017 Markus Neuberger <info@markusneuberger.at>
-- initial
+NethServer omd configuration
 
 %prep
 %setup
 
 %build
-%{makedocs}
 perl createlinks
 
 %install
-rm -rf $RPM_BUILD_ROOT
-(cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
-rm -f %{name}-%{version}-%{release}-filelist
-%{genfilelist} $RPM_BUILD_ROOT \
-> %{name}-%{version}-%{release}-filelist
+rm -rf %{buildroot}
+(cd root; find . -depth -print | cpio -dump %{buildroot})
+%{genfilelist} %{buildroot} > %{name}-%{version}-filelist
 
 %post
-%postun
 
-%clean 
-rm -rf $RPM_BUILD_ROOT
+%preun
 
-%files -f %{name}-%{version}-%{release}-filelist
+%files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
-%dir %{_nseventsdir}/%{name}-update
 %doc COPYING
+%dir %{_nseventsdir}/%{name}-update
+
+%changelog
+* Sun Dec 03 2017 Markus Neuberger <info@markusneuberger.at> - 0.1.0-1
+- Initial NS7 release
