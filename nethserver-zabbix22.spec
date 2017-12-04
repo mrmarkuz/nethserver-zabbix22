@@ -21,6 +21,8 @@ NethServer Zabbix22 configuration
 - Added zabbix.conf
 - Added zabbix_server.conf
 - Added templates to spec
+- Added documentation to README
+- Added Zabbix App button
 * Sun Dec 03 2017 Markus Neuberger <info@markusneuberger.at> - 0.1.0-1
 - Initial NS7 release
 - Added zabbix mariadb database
