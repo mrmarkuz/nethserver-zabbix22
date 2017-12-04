@@ -2,7 +2,7 @@ Summary: nethserver-zabbix22 sets up the monitoring system
 %define name nethserver-zabbix22
 Name: %{name}
 %define version 0.1.0
-%define release 1
+%define release 2
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -17,6 +17,10 @@ BuildArch: noarch
 NethServer Zabbix22 configuration
 
 %changelog
+* Mon Dec 04 2017 Markus Neuberger <info@markusneuberger.at> - 0.1.0-2
+- Added zabbix.conf
+- Added zabbix_server.conf
+- Added templates to spec
 * Sun Dec 03 2017 Markus Neuberger <info@markusneuberger.at> - 0.1.0-1
 - Initial NS7 release
 - Added zabbix mariadb database
