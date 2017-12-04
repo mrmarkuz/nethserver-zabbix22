@@ -1,10 +1,12 @@
 # nethserver-zabbix22
 
-nethserver-zabbix22 integrates the monitoring system into NethServer
+nethserver-zabbix22 integrates the oldstable monitoring system Zabbix 2.2 from epel into NethServer
 
 ## Installation
 
-Install nethserver-zabbix22, browse to /zabbix and start monitoring.
+Install nethserver-zabbix22, browse to /zabbix and install zabbix via web UI.
+
+The Zabbix db user password can be found in /var/lib/nethserver/zabbix.
 
 ## Documentation
 

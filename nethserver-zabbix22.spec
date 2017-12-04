@@ -11,6 +11,7 @@ Source: %{name}-%{version}.tar.gz
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 Requires: nethserver-mysql, zabbix22-server-mysql, zabbix22-web-mysql, zabbix22-agent
 BuildRequires: nethserver-devtools
+Conflicts: nethserver-zabbix
 BuildArch: noarch
 
 %description
